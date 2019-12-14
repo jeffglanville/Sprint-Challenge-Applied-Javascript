@@ -27,7 +27,7 @@ axios
     .then((res) => {
         const articleArray = res.data;
         const articleList = articleArray.map((article) => {
-            return article;
+            return article.headline, article.authorPhoto, article.authorName;
         })
         return articleList;
     })
@@ -47,25 +47,25 @@ axios
 
 
 
-    function articleCreator(headline, authorPhoto, authorName) {
+    function articleCreator(obj) {
         const card = document.createElement('div');
-        const headline = document.createElement('div');
+        const articleHeadline = document.createElement('div');
         const author = document.createElement('div');
         const imgContainer = document.createElement('div');
         const authorImg = document.createElement('img');
         const authorName = document.createElement('span');
 
         card.classList.add('card');
-        headline.classList.add('headline');
+        articleHeadline.classList.add('headline');
         author.classList.add('author');
         imgContainer.classList.add('img-container');
 
-        headline.textContent = `headline: ${obj.headline}`;
+        articleHeadline.textContent = `headline: ${obj.headline}`;
         imgContainer.href = obj.authorPhoto;
         authorImg.textContent = obj.authorPhoto;
         authorName.textContent = `By: ${obj.authorName}`;
 
-        card.appendChild(headline);
+        card.appendChild(articleHeadline);
         card.appendChild(author);
         author.appendChild(imgContainer);
         imgContainer.appendChild(authorImg);

@@ -9,9 +9,11 @@
 //  </div >
 // And add it to the DOM in the .header-container component
 
-const infoHeader = document.querySelector('.header-container')
+const info = document.querySelector('.header-container')
 
-function myHeaderCreator() {
+// info.appendChild(headerCreator);
+
+function headerCreator() {
 
     //adding the elements to the function
 
@@ -41,5 +43,5 @@ function myHeaderCreator() {
     return header;
 }
 
-// infoHeader.appendChild(myHeaderCreator);
+
 

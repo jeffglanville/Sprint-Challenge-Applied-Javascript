@@ -25,24 +25,19 @@ axios
     .get('https://lambda-times-backend.herokuapp.com/articles')
 
     .then((res) => {
-        const articleArray = res.data;
-        const articleList = articleArray.map((article) => {
-            return article.headline, article.authorPhoto, article.authorName;
+        const articlesArray = res.data;
+        const list = articlesArray.map((data) => {
+            return data.articles;
         })
-        return articleList;
-    })
-    .then((articleList) => {
-        articleList.forEach((article) => {
-            axios.get(`https://lambda-times-backend.herokuapp.com/${article.headline} ${article.authorPhoto} ${article.authorName}`)
-            .then((res) => {
-                const data = res.data;
-                const newArticle = articleCreator(data);
+    .then((articlesArray) => {
+        articlesArray.forEach((article) => {
+            axios.get(`https://lambda-times-backend.herokuapp.com/${data.articles}`).then((res) => {
+                const articleData = res.data;
+                const newArticle = articleCreator(articleData);
                 articleCards.appendChild(newArticle);
             })
         })
     })
-    .catch((err) => {
-        console.log(err);
     })
 
 

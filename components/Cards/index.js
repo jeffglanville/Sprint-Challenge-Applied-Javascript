@@ -25,10 +25,19 @@ axios
     .get('https://lambda-times-backend.herokuapp.com/articles')
 
     .then((res) => {
-        const data = res.data;
-        console.log(res);
-        const articleList = articleCreator(data);
-        articleCards.appendChild(articleList);
+        const data = res.data.articles;
+        const js = data.javascript;
+        const bs = data.bootstrap;
+        const tech = data.technology;
+        const jq = data.jquery;
+        const node = data.node;
+        const allTopics = [].concat(js, bs, tech, jq, node);
+
+        allTopics.forEach((topic) => {
+            const newTopic = articleCreator(topic);
+            articleCards.appendChild(newTopic);
+        })
+
     })
     .catch((err) => {
         console.log(err);
@@ -47,7 +56,7 @@ axios
         author.classList.add('author');
         imgContainer.classList.add('img-container');
 
-        articleHeadline.textContent = obj.headline;
+        articleHeadline.textContent = `Headline: ${obj.headline}`;
         imgContainer.href = obj.authorPhoto;
         authorImg.src = obj.authorPhoto;
         authorName.textContent = `By: ${obj.authorName}`;

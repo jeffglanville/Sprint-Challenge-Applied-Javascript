@@ -32,4 +32,4 @@ function headerCreator () {
     return header;
 }
 
-headerContainer.appendChild(headerCreator);
+headerContainer.appendChild(headerCreator());

@@ -8,17 +8,19 @@
 //    <div class="tab">topic here</div>
 
 const tabTopics = document.querySelector('.topics');
-tabTopics.appendChild(tab);
 
 axios
     .get('https://lambda-times-backend.herokuapp.com/topics')
 
     .then((res) => {
-        const data = res.data;
-        console.log(res);
-        const topicsArray = tab(data);
-        tabTopics.appendChild(topicsArray);
+        const topic = res.data;
+        const topicData = tab(topic);
+        return topicData;
     })
+    .catch((err) => {
+        console.log(err);
+    })
+
 
     function tab () {
         const tabs = document.createElement('div');
